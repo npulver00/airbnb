@@ -8,22 +8,31 @@ const page = new Airbnb();
     beforeEach(async () => {
         await page.navigate();
       });
-    afterAll(async () => {
-        await page.quit();
-      });
+    // afterAll(async () => {
+    //     await page.quit();
+    //   });
 
       it("Search location, date & guests", async()=>{
-          console.log("Search location")
+          await page.inputCity(`Sedona \n`);
+          await page.clickStartDate();
+          await page.clickEndDate();
+          await page.clickGuest();
+          await page.addAdult();
+          await page.addAdult();
+          await page.clickSearch();
+          await page.clickHouse();
+        //   await page.clickReserve();
+        //   await page.clearGuestInput()
 
     });
-      it("CLear and change Location", async()=>{
-        console.log("Search location")
+    //   it("CLear and change Location", async()=>{
+    //     console.log("Search location")
 
-    });
-      it("Clear Guests X", async()=>{
-        console.log("Search location")
+    // });
+    //   it("Clear Guests X", async()=>{
+    //     console.log("Search location")
 
-    });
+    // });
 
 
   });
