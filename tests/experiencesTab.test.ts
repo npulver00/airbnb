@@ -8,9 +8,9 @@ describe("Airbnb: Experiences", () => {
     beforeEach(async () => {
         await page.navigate();
     });
-    afterAll(async () => {
-        await page.quit();
-    });
+    // afterAll(async () => {
+    //     await page.quit();
+    // });
 
     it("Find an Experiences", async () => {
         await page.clickExperience()
