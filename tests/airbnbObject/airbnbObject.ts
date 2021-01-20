@@ -4,7 +4,7 @@ const chromedriver = require("chromedriver");
 
 // const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
-
+const fs = require("fs");
 
 export interface Vacation {
     location: string;
@@ -55,6 +55,9 @@ export class Airbnb {
 
     experiences: By = By.xpath("//span[text()='Experiences']");
     experiencesButton: By = By.xpath("//a[@class='_1gwzhbum']");
+    zoomOut: By = By.xpath("//button[@aria-label='Zoom out']");
+    zoomIn: By = By.xpath("//button[@aria-label='Zoom in']");
+    clickOnExperience: By = By.xpath("(//a[@class='_sqvp1j'])[2]")
 
     /*---cabins&cottages---*/
 
@@ -194,9 +197,34 @@ export class Airbnb {
     /* <--------Experience-------> */
 
     async clickExperience(): Promise<void> {
-        return await this.click(this.experiences);
+        await this.driver.get('https://www.airbnb.com/s/Sedona--AZ--United-States/experiences?tab_id=experience_tab&refinement_paths%5B%5D=%2Fexperiences&checkin=2021-02-15&checkout=2021-02-17&source=structured_search_input_header&search_type=unknown&rank_mode=default&ne_lat=35.02647697549829&ne_lng=-111.62126242385477&sw_lat=34.685587745842525&sw_lng=-112.00578390822977&zoom=11&search_by_map=true');
+
+        // return await this.click(this.experiences);
     };
 
+    async clickOnOneExperience(): Promise<void> {
+        await this.click(this.clickOnExperience)
+    };
+
+    async clickZoomIn (): Promise<void> {
+        await this.click(this.zoomIn)
+    };
+
+    async clickZoomOut (): Promise<void> {
+        await this.click(this.zoomOut)
+    };
+    
+    async takeScreenshot(filepath: string) {
+        fs.writeFile(
+          `${__dirname}/screenshots/${filepath}.png`,
+          await this.driver.takeScreenshot(),
+          "base64",
+          (error) => {
+            if (error) console.log(error, "Error with Screen Shot");
+            else console.log("Screenshot Saved Successfully");
+          }
+        );
+    }
 
     /* <----------Cabin------------> */
 
