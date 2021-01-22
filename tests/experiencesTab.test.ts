@@ -28,12 +28,6 @@ describe("Airbnb: Experiences", () => {
         await page.clickZoomOut();
         await page.clickZoomOut();
         await page.takeScreenshot("Post_Map_Zoomed_Out");
-    });
-
-    it("Find an Experiences", async () => {
-        await page.clickExperience();
         await page.driver.sleep(500);
-        await page.takeScreenshot("Pre_OneExperiences");
-        await page.clickOnOneExperience();
     });
 });
